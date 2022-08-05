@@ -6,6 +6,7 @@ from telegram.ext import (
     CommandHandler,
     CallbackContext,
     ChatMemberHandler,
+
 )
 import os
 
@@ -115,7 +116,7 @@ def greet_chat_members(update: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     """Start the bot."""
-
+    print('aaaaaaaaaa')
     # Create the Updater and pass it your bot's token.
     updater = Updater(TOKEN, use_context=True)
     # Get the dispatcher to register handlers
@@ -128,8 +129,13 @@ def main() -> None:
     # Handle members joining/leaving chats.
     dispatcher.add_handler(ChatMemberHandler(greet_chat_members, ChatMemberHandler.CHAT_MEMBER))
     # Start the Bot
+    # updater.start_polling()
     updater.start_webhook(
         listen="0.0.0.0",
         port=int(PORT),
         url_path=TOKEN,
         webhook_url='https://telegram-bot-test-test-test.herokuapp.com/' + TOKEN)
+
+
+if __name__ == '__main__':
+    main()

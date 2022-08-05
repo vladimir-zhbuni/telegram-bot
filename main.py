@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 TOKEN = '5259067698:AAHSS4HwFWDAbMBUK76cr_8I4NoMcFk8bYQ'
 
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def start(update: Update, context) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
     await update.message.reply_html(

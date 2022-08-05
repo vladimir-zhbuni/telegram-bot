@@ -1,11 +1,12 @@
 import logging
 from typing import Tuple, Optional
-from telegram import Update, Chat, ChatMember, ParseMode, ChatMemberUpdated
+from telegram import Update, Chat, ChatMember, ParseMode, ChatMemberUpdated, ForceReply
 from telegram.ext import (
     Updater,
     CommandHandler,
     CallbackContext,
     ChatMemberHandler,
+    ContextTypes
 
 )
 import os
@@ -17,6 +18,16 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 TOKEN = '5259067698:AAHSS4HwFWDAbMBUK76cr_8I4NoMcFk8bYQ'
+
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Send a message when the command /start is issued."""
+    user = update.effective_user
+    await update.message.reply_html(
+        rf"Hi {user.mention_html()}!",
+        reply_markup=ForceReply(selective=True),
+    )
+
 
 
 def extract_status_change(
